@@ -1,6 +1,7 @@
 package demo;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -22,16 +23,46 @@ class Implementation {
     }
 
     private static void union(Set<Integer> set1, Set<Integer> set2) {
-        set1.addAll(set2);
+        System.out.print("set1: ");
         printSet(set1);
+
+        System.out.print("\nset2: ");
+        printSet(set2);
+
+        System.out.print("\nunion: ");
+
+        for (Integer element : set2) {
+            if(!set1.contains(element)) {
+                set1.add(element);
+            }
+        }
+        printSet(set1);
+        System.out.println("\n");
     }
 
     private static void intersect(Set<Integer> set1, Set<Integer> set2) {
-        set1.retainAll(set2);
+        System.out.print("set1: ");
         printSet(set1);
+
+        System.out.print("\nset2: ");
+        printSet(set2);
+
+        System.out.print("\nintersect: ");
+
+        for (Integer element : set2) {
+            if(set1.contains(element)) {
+                set1.remove(element);
+            }
+        }
+        printSet(set1);
+        System.out.println("\n");
     }
 
     private static void printSet(Set<Integer> set) {
-        System.out.println(set);
+        Iterator iterator = set.iterator();
+
+        while (iterator.hasNext()) {
+            System.out.print(iterator.next());
+        }
     }
 }
