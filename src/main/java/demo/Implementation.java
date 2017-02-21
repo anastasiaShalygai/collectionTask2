@@ -23,43 +23,32 @@ class Implementation {
     }
 
     private static void union(Set<Integer> set1, Set<Integer> set2) {
-        System.out.print("set1: ");
-        printSet(set1);
-
-        System.out.print("\nset2: ");
-        printSet(set2);
-
-        System.out.print("\nunion: ");
+        Set<Integer> setTemp = new HashSet<Integer>();
+        setTemp.addAll(set1);
 
         for (Integer element : set2) {
-            if(!set1.contains(element)) {
-                set1.add(element);
+            if (!setTemp.contains(element)) {
+                setTemp.add(element);
             }
         }
-        printSet(set1);
-        System.out.println("\n");
+        printSet(setTemp, "union");
     }
 
     private static void intersect(Set<Integer> set1, Set<Integer> set2) {
-        System.out.print("set1: ");
-        printSet(set1);
-
-        System.out.print("\nset2: ");
-        printSet(set2);
-
-        System.out.print("\nintersect: ");
+        Set<Integer> setTemp = new HashSet<Integer>();
+        setTemp.addAll(set1);
 
         for (Integer element : set2) {
-            if(set1.contains(element)) {
-                set1.remove(element);
+            if (setTemp.contains(element)) {
+                setTemp.remove(element);
             }
         }
-        printSet(set1);
-        System.out.println("\n");
+        printSet(setTemp, "intersect");
     }
 
-    private static void printSet(Set<Integer> set) {
-        Iterator iterator = set.iterator();
+    private static void printSet(Set<Integer> setResult, String operation) {
+        System.out.print("\noperation: " + operation + "\n");
+        Iterator iterator = setResult.iterator();
 
         while (iterator.hasNext()) {
             System.out.print(iterator.next());
